@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'tracker.apps.TrackerConfig',
     'bootstrap3',
+    'django_registration',
 ]
 
 MIDDLEWARE = [

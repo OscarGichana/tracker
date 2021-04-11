@@ -1,0 +1,7 @@
+asgiref==3.3.4
+confusable-homoglyphs==3.2.0
+Django==3.0
+django-bootstrap3==15.0.0
+django-registration==3.1.2
+pytz==2021.1
+sqlparse==0.4.1
