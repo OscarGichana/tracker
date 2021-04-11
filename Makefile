@@ -4,4 +4,5 @@ migration:
 		python manage.py makemigrations
 migrate:
 		python manage.py migrate
-
+freeze:
+		pip freeze > requirements.txt
