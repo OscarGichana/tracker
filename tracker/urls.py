@@ -3,6 +3,7 @@ from . import views
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+from .views import UserRegisterView
 
 
 urlpatterns=[
@@ -20,6 +21,7 @@ urlpatterns=[
     # url(r'^api/awproject/$', views.ProjectList.as_view()),
     # url(r'api/merch/merch-id/(?P<pk>[0-9]+)/$',views.MerchDescription.as_view()),
     # url(r'api/prod/prod-id/(?P<pk>[0-9]+)/$',views.ProductDescription.as_view()),
+    url(r'registration/', UserRegisterView.as_view(), name='registration')
 
 ]
 

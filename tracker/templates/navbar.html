@@ -23,11 +23,13 @@
             </li>
 
             <li>
+              <a href="{% url 'profile' %}">{{user.username}}</a>
             </li>
             <li>
               <a href="/logout">Logout</a>
             </li>
             <li>
+              <a href="{%url 'registration' %}">Sign-Up</a>
             </li>
 
           </ul>
@@ -46,8 +48,8 @@
             <li>
             </li>
             <li>
+              <a href="{%url 'registration' %}">Sign-Up</a>
             </li>
-
           </ul>
         </li>
       </ul>

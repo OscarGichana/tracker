@@ -13,6 +13,13 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 import os
 from pathlib import Path
 from decouple import config
+import dj_database_url
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
+
+
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "project.settings.dev")
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -27,7 +34,7 @@ SECRET_KEY = 'django-insecure-1py64tpr#znsqo1w-d@kr3(op=c(z)$&4b(ef1ohvty7c=_0cg
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -79,14 +86,32 @@ WSGI_APPLICATION = 'project.wsgi.application'
 
 
 # Database
-# https://docs.djangoproject.com/en/3.2/ref/settings/#databases
-
+# https://docs.djangoproject.com/en/1.11/ref/settings/#databases
+MODE=config("MODE", default="dev")
+SECRET_KEY = 'django-insecure-1py64tpr#znsqo1w-d@kr3(op=c(z)$&4b(ef1ohvty7c=_0cg'
+# if config('MODE')=="dev":
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'tracker',
+        'USER': 'oscar',
+        'PASSWORD':'123',
+        'DISABLE_SERVER_SIDE_CURSORS': True,
+
     }
 }
+# production
+# else:
+#    DATABASES = {
+#        'default': dj_database_url.config(default=config('DATABASE_URL'))
+#    }
+
+
+cloudinary.config( 
+  cloud_name = 'oscarrito', 
+  api_key = '827845982482824', 
+  api_secret = 'xPAnMTzigO-1yH_U-S_57A4e7Rg', 
+)
 
 
 # Password validation
