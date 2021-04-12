@@ -55,3 +55,68 @@ def neighborhood(request, neighborhood_id):
 
     return render(request, 'posts.html', {'neighborhood':neighborhood,'business':business,'posts':posts,'id':neighborhood_id, 'title':title})
 
+# @login_required(login_url='/accounts/login/')
+# def posts(request, id):
+#     title = 'O_world'
+#     posts = Posts.get_by_neighborhood(neighborhoods)
+#     message = f"{neighborhoods}"
+#     return render(request, 'posts.html', {'posts':posts, 'title':title, 'message':message})
+
+
+
+class UserRegisterView(generic.CreateView):
+    form_class = UserCreationForm
+    template_name = 'django_registration/registration_form.html'
+    success_url = reverse_lazy('login')
+
+# class UserEditView(generic.UpdateView):
+#     form_class = UserChangeForm
+#     template_name = 'django_registration/edit_profile.html'
+#     success_url = reverse_lazy('index')
+    
+#     def get_object(self):
+#         return self.request.user
+
+# @login_required 
+# def edit_profile( request, template_name = 'django_registration/edit_profile.html' ):
+#     """
+#     Processes requests for the settings page, where users
+#     can edit their profiles.
+#     """
+#     page_title = 'Account Settings'
+#     if request.method == 'POST':
+#         postdata = request.POST.copy()
+#         form = UserUpdateForm( postdata )
+#         if form.is_valid():
+#             form.save()
+#     else:
+#         form = UserUpdateForm()
+#     title = 'Settings'
+#     return render(request, 'django_registration/edit_profile.html', )
+
+
+@login_required(login_url='/accounts/login/')
+def profile(request):
+    title = 'O_world'
+    user = request.user
+    return render(request, 'django_registration/profile.html')
+
+
+@login_required(login_url='/accounts/login/')
+def edit_profile(request):
+    current_user = request.user
+    if request.method == 'POST':
+        form = UserUpdateForm(request.POST, request.FILES)
+        if form.is_valid():
+            profile = form.save(commit=False)
+            profile.editor = current_user
+            profile.save()
+        return redirect('index')
+
+    else:
+        form = UserUpdateForm()
+    return render(request, 'django_registration/edit_profile.html', {"form": form})
+    def get_object(self):
+        return self.request.user
+
+
