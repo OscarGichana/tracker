@@ -17,3 +17,9 @@ class NewProjectForm(forms.ModelForm):
         exclude = ['editor', 'author_profile', 'user', 'likes', 'comment',]
 
 
+class NewNeighborhoodForm(forms.ModelForm):
+    class Meta:
+        model = Neighborhood
+        exclude = ['editor', 'author_profile', 'user', 'likes', 'comment',]
+
+
