@@ -98,6 +98,46 @@ class Neighborhood(models.Model):
     class Meta:
         ordering = ['-pub_date']
         verbose_name = 'My Neighborhood'
+
         verbose_name_plural = 'Neighborhoods'
+
+
+class Posts(models.Model):
+    post = models.TextField()
+    pub_date = models.DateTimeField(auto_now_add=True)    
+    Author = models.ForeignKey(User, on_delete=models.CASCADE,null=True)
+    author_profile = models.ForeignKey(Profile,on_delete=models.CASCADE,null=True)
+    neighborhood = models.ForeignKey(Neighborhood, null=True, blank=True, on_delete=models.CASCADE, related_name="neighborhood")
+    user = models.ForeignKey(User, null=True, blank=True, on_delete=models.CASCADE, related_name='reviews')
+
+
+    def save_post(self):
+        self.save()
+    
+    def delete_post(self):
+        self.delete()
+        
+
+    def get_posts(self, id):
+        posts = Posts.objects.filter(neighborhood_id =id)
+        return posts
+
+    @classmethod
+    def get_allpost(cls):
+        posts = cls.objects.all()
+        return posts
+    
+    @classmethod
+    def get_by_neighborhood(cls, neighborhoods):
+        posts = cls.objects.filter(neighborhood__name__icontains=neighborhoods)
+        return posts
+    
+    def __str__(self):
+        return self.post
+    
+    class Meta:
+        ordering = ['-pub_date']
+        verbose_name = 'My Post'
+        verbose_name_plural = 'Posts'
 
 
