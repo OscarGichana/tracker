@@ -136,3 +136,17 @@ def new_project(request):
         form = NewProjectForm()
     return render(request, 'new_post.html', {"form": form})
 
+@login_required(login_url='/accounts/login/')
+def new_neighborhood(request):
+    current_user = request.user
+    if request.method == 'POST':
+        form = NewNeighborhoodForm(request.POST, request.FILES)
+        if form.is_valid():
+            neighborhood = form.save(commit=False)
+            neighborhood.editor = current_user
+            neighborhood.save()
+        return redirect('index')
+
+    else:
+        form = NewNeighborhoodForm()
+    return render(request, 'new_neighborhood.html', {"form": form})
