@@ -141,3 +141,26 @@ class Posts(models.Model):
         verbose_name_plural = 'Posts'
 
 
+class Business(models.Model):
+    name = models.TextField()
+    email = models.EmailField()
+    pub_date = models.DateTimeField(auto_now_add=True)    
+    author_profile = models.ForeignKey(Profile,on_delete=models.CASCADE)
+    neighborhood = models.ForeignKey(Neighborhood, null=True, blank=True, on_delete=models.CASCADE, related_name="bus_neighborhood")
+    user = models.ForeignKey(User, null=True, blank=True, on_delete=models.CASCADE, related_name='bus_user')
+
+
+    def save_business(self):
+        self.save()
+    
+    def delete_business(self):
+        self.delete()
+        
+
+    def get_business(self, id):
+        business = Business.objects.filter(neighborhood_id =id)
+        return business
+
+    def update_business(self, id):
+        business = Business.objects.filter(business_name =name)
+        return business
