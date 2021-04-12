@@ -1,0 +1,69 @@
+{%extends 'base.html'%}
+{% load bootstrap3 %}
+
+{% block content %} 
+<div class="container">
+
+  <div class="row">
+    <div class="col-md-8">
+      <div class="table-responsive">
+        <table id="dtBasicExample" class="table table-striped table-bordered" cellspacing="0" width="100%">
+            <thead class="black white-text">
+              <tr class="font-weight-bold">
+                <th class="th-sm">Business Name
+                </th>
+                <th class="th-sm">Business Address
+                </th>
+                <th class="th-sm">Business Email
+                </th>
+                <th class="th-sm">Neighborhood
+                </th>
+                
+              </tr>
+            </thead>
+            <tbody>
+              {% for bus in business%}
+              <tr>
+                <td>{{bus.name}}</td>
+                <td>{{bus.address}}</td>
+                <td>{{bus.email}}</td>
+                <td>{{bus.neighborhood.name}}</td>
+                
+              </tr>
+              {% endfor %}
+
+              
+            </tbody>
+          </table>
+      </div>
+
+        <!-- <p>Nothing found. Choose a Location and Hit the Search Button.</p> -->
+    </div>
+
+
+    <div class="col-md-2">
+      <div class="container">
+          <h4>{{neighborhood.name}} Updates</h4>
+          <hr>
+
+          <div class="pl-1 ml-1 pt-2">
+            {% for post in posts %}
+            <p>{{post.post}}</p>
+            <small>Posted by: {{post.Author}}</small> <br>
+            <small>Posted by: {{post.pub_date}}</small>
+
+            <hr>
+
+            {% endfor %}
+            <a href="{% url 'new-project' %}">
+              <button type = "submit" class="btn btn-outline-success btn-md">Add an Update</button>
+            </a>
+
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+<hr>
+
+{% endblock %}
