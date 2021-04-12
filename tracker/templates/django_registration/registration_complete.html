@@ -1,5 +1,6 @@
-{%extends "django_registration/base.html"%} {% load bootstrap3 %}
+{%extends 'base.html'%}
+{% load bootstrap3 %}
 {% block content %}
-You have successfuly registerd.               <a href="{%url 'login' %}">Sign-In</a>  to continue
+You have successfuly registerd. <a href="{%url 'login' %}">Sign-In </a>  to continue
 
 {% endblock %}

@@ -1,7 +1,7 @@
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="">NeighborhoodTracker</a>
+      <a class="navbar-brand" href="">Pro-Awards</a>
     </div>
 
     <!-- Adding a search form  -->
@@ -12,16 +12,22 @@
 
     <!--The search form above-->
     <div class="col-sm-6 col-md-6">
+      {% if user.is_authenticated %}
       <ul>
-        <li class="dropdown">
+        <li style="display: inline;">
+          <a href="/">Home</a>
+        </li>
+        <li style="display: inline; margin-left: 20px;">
+          <a href="{% url 'new-neighborhood' %}">
+            <button type = "submit" class="btn btn-outline-success btn-md">Add a new Neighborhood</button>
+          </a>
+        </li>
+
+        <li class="dropdown" style="display: inline; margin-left: 20px;">
           <a href="#" class="dropdown-toggle btn btn-default" data-toggle="dropdown" role="button" aria-expanded="false">Account
                     <span class="caret"></span>
                 </a>
           <ul class="dropdown-menu" role="menu">
-            <li>
-              <a href="/">Home</a>
-            </li>
-
             <li>
               <a href="{% url 'profile' %}">{{user.username}}</a>
             </li>
@@ -29,32 +35,36 @@
               <a href="/logout">Logout</a>
             </li>
             <li>
-              <a href="{%url 'registration' %}">Sign-Up</a>
             </li>
 
           </ul>
         </li>
       </ul>
+      {% else %}
       <ul>
-        <li class="dropdown">
-          <!-- <a href="#" class="dropdown-toggle btn btn-default" data-toggle="dropdown" role="button" aria-expanded="false">Account -->
+        <li style="display: inline;">
+          <a href="/">Home</a>
+        </li>
+
+        <li class="dropdown" style="display: inline; margin-left: 20px;">
+          <a href="#" class="dropdown-toggle btn btn-default" data-toggle="dropdown" role="button" aria-expanded="false">Account
                     <span class="caret"></span>
                 </a>
           <ul class="dropdown-menu" role="menu">
-            <li>
-              <a href="">Home</a>
-            </li>
     
             <li>
+              <a href="{%url 'login' %}">Sign-In</a>
             </li>
             <li>
               <a href="{%url 'registration' %}">Sign-Up</a>
             </li>
+
           </ul>
         </li>
       </ul>
 
 
+      {% endif %}
 
       <div class="col-sm-4 col-md-4 navbar-right">
 

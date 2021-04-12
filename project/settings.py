@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'cloudinary',
     'phonenumber_field',
     'phonenumbers',
+    'django_countries',
 ]
 
 MIDDLEWARE = [
