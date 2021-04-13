@@ -30,10 +30,21 @@
             <li>
               <a href="/logout">Logout</a>
             </li>
-            <li>
-            </li>
+            <li style="display: inline;">
 
-          </ul>
+              <form class="navbar-form" role="search" action="{% url 'search_neighborhoods' %}">
+          
+                <div class="input-group">
+                  <input type="text" style="font-family: 'Dosis', sans-serif;" class="form-control" placeholder="Search Neighborhood" name="project">
+                  <div class="input-group-btn">
+                    <button class="btn btn-outline-primary my-2 " style="font-family: 'Dosis', sans-serif;" type="submit">Find</button>
+                  </div>
+                </div>
+      
+      
+              </form>
+            </li>
+                </ul>
         </li>
       </ul>
       {% else %}
@@ -63,18 +74,6 @@
       {% endif %}
 
 
-  
-      <form class="navbar-form" role="search" action="{% url 'search_neighborhoods' %}">
-  
-        <div class="input-group">
-          <input type="text" style="font-family: 'Dosis', sans-serif;" class="form-control mr-sm-4" placeholder="Search Neighborhood" name="project">
-          <div class="input-group-btn">
-            <button class="btn btn-outline-primary my-2 my-sm-0" style="font-family: 'Dosis', sans-serif;" type="submit">Find</button>
-          </div>
-        </div>
-
-
-      </form>
 
   
   
