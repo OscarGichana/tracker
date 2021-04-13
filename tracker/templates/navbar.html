@@ -1,17 +1,13 @@
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="">Pro-Awards</a>
+      <a class="navbar-brand" href="">Neighborhood Tracker</a>
     </div>
 
     <!-- Adding a search form  -->
-    <div class="col-sm-4 col-md-4 navbar-right">
-
-    </div>
     <!-- search form end -->
 
     <!--The search form above-->
-    <div class="col-sm-6 col-md-6">
       {% if user.is_authenticated %}
       <ul>
         <li style="display: inline;">
@@ -66,22 +62,23 @@
 
       {% endif %}
 
-      <div class="col-sm-4 col-md-4 navbar-right">
 
   
-          <div class="input-group">
-            <input type="text" style="font-family: 'Dosis', sans-serif;" class="form-control mr-sm-4" placeholder="Search Project" name="project">
-            <div class="input-group-btn">
-              <button class="btn btn-outline-primary my-2 my-sm-0" style="font-family: 'Dosis', sans-serif;" type="submit">Find</button>
-            </div>
+      <form class="navbar-form" role="search" action="{% url 'search_neighborhoods' %}">
+  
+        <div class="input-group">
+          <input type="text" style="font-family: 'Dosis', sans-serif;" class="form-control mr-sm-4" placeholder="Search Neighborhood" name="project">
+          <div class="input-group-btn">
+            <button class="btn btn-outline-primary my-2 my-sm-0" style="font-family: 'Dosis', sans-serif;" type="submit">Find</button>
           </div>
+        </div>
+
+
+      </form>
+
   
   
-        </form>
-  
-      </div>
   
     </div>
 
-  </div>
 </nav>

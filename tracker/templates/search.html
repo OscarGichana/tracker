@@ -2,33 +2,31 @@
 <div class="container">
 
   <div class="row">
-    {% if neighborhoods %}
-    <h2 style="font-family: 'Kodchasan', sans-serif;color:white;"> Here are profiles of your search term: {{message}}</h2>
+    {% if neighborhood %}
+      <h2>Found {{ neighborhood|length }} of searched term {{message}}</h2>
     {% else %}
-    <h2 style="font-family: 'Kodchasan', sans-serif;color:white;"> It appears that there are 0 profiles for your search term
-      {{message}}, please try again. </h2>
+      <h2> Found 0 Neighborhoods for the search term {{message}}</h2>
     {% endif %}
 
   </div>
 
+  <div class="row">
 
-    {% if neighborhoods %}
-    <div class="container">
-
-      <div class="card-columns">
-
-        {% for neighborhood in neighborhoods %}
-        <div class="card border-secondary">
-          <img src="{{neighborhood.pic.url}}" data-target="#imageModal{{neighborhood.id}}" data-toggle="modal" alt="" class="img-fluid" id="eachimage"
-            size="100px200">
-        </div>
-        {% endfor %}
+  {% if neighborhood%}
+    {% for neighborhood in neighborhoods %}
+      <div class="col-sm-6 col-md-3">
+          <h1>{{neighborhood.title}}</h1>
       </div>
+    <!--Display news Article images  -->
+    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+      <img src="{{neighborhood.pic.url}}" class="img-responsive" alt="Image">
     </div>
 
-    {% endif %}
+    {% endfor %}
+  {% endif %}
   </div>
 </div>
+
 
 
 {% endblock %}
