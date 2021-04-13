@@ -27,7 +27,7 @@ An app that helps you be up to date with happenings around your neighborhood by 
 
 ## Website Link
 
-Copy the link https://awardsprojectapp.herokuapp.com/ in your browser and be updated.
+Copy the link https://neightrack.herokuapp.com/ in your browser and be updated.
 
 
 ## Build

@@ -17,9 +17,16 @@ import dj_database_url
 import cloudinary
 import cloudinary.uploader
 import cloudinary.api
+from dotenv import load_dotenv
+from django.core.wsgi import get_wsgi_application
+import django_heroku
+from django.core.handlers.wsgi import WSGIHandler
+import django.conf.global_settings as defaults
 
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "project.settings.dev")
+# django.setup()
+# from tracker.models import *
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -29,7 +36,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-1py64tpr#znsqo1w-d@kr3(op=c(z)$&4b(ef1ohvty7c=_0cg'
+# SECRET_KEY = 'django-insecure-1py64tpr#znsqo1w-d@kr3(op=c(z)$&4b(ef1ohvty7c=_0cg'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -50,7 +57,7 @@ INSTALLED_APPS = [
     'bootstrap3',
     'django_registration',
     'cloudinary',
-    'phonenumber_field',
+    # 'phonenumber_field',
     'phonenumbers',
     'django_countries',
 ]
@@ -90,22 +97,22 @@ WSGI_APPLICATION = 'project.wsgi.application'
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 MODE=config("MODE", default="dev")
 SECRET_KEY = 'django-insecure-1py64tpr#znsqo1w-d@kr3(op=c(z)$&4b(ef1ohvty7c=_0cg'
-# if config('MODE')=="dev":
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'tracker',
-        'USER': 'oscar',
-        'PASSWORD':'123',
-        'DISABLE_SERVER_SIDE_CURSORS': True,
-
-    }
-}
+if config('MODE')=="dev":
+   DATABASES = {
+       'default': {
+           'ENGINE': 'django.db.backends.postgresql_psycopg2', 
+           'NAME': config('DB_NAME'),
+           'USER': config('DB_USER'),
+           'PASSWORD': config('DB_PASSWORD')
+       }
+       
+   }
 # production
-# else:
-#    DATABASES = {
-#        'default': dj_database_url.config(default=config('DATABASE_URL'))
-#    }
+else:
+   DATABASES = {
+       'default': dj_database_url.config(default=config('DATABASE_URL'))
+   }
+
 
 
 cloudinary.config( 
