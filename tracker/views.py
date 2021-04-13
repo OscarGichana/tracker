@@ -150,3 +150,18 @@ def new_neighborhood(request):
     else:
         form = NewNeighborhoodForm()
     return render(request, 'new_neighborhood.html', {"form": form})
+
+
+def search_neighborhoods(request):
+
+    # search for a user by their username
+    if 'neighborhood' in request.GET and request.GET["neighborhood"]:
+        search_term = request.GET.get("project")
+        searched_neighborhoods = Neighborhood.search_neighborhoods(search_term)
+        message = f"{search_term}"
+
+        return render(request, 'search.html', {"message": message, "projects": searched_neighborhoods})
+
+    else:
+        message = "You haven't searched for any person"
+        return render(request, 'search.html', {"message": message})
