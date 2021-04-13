@@ -71,9 +71,10 @@ class Neighborhood(models.Model):
         return projects
     
     @classmethod
-    def search_neighborhoods(cls, search_term):
-        projects = cls.objects.filter(name__icontains=search_term)
-        return projects
+    def search_by_title(cls,search_term):
+        neighborhood = cls.objects.filter(title__icontains=search_term)
+        return neighborhood
+
     
     
     @classmethod
