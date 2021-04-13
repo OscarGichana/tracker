@@ -14,6 +14,7 @@ urlpatterns=[
     url(r'^new/neighborhood$', views.new_neighborhood, name='new-neighborhood'),
     url(r'^new/post$', views.new_project, name='new-project'),
     url(r'registration/', UserRegisterView.as_view(), name='registration')
+    url(r'^search/', views.search_neighborhoods, name='search_neighborhoods'),
 
 ]
 
